@@ -1,0 +1,33 @@
+.footer {
+  width: 100%;
+  height: 7rem;
+  font: initial;
+  font-size: xx-large;
+  background-color: #56ccf2;
+  color: white;
+  display: flex;
+  justify-content: inherit;
+  align-items: center;
+  padding: 0 7%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+}
+
+.img {
+  width: 100%;
+  padding: 0px 35%;
+  height: inherit;
+  display: flex;
+  justify-content: inherit;
+  align-items: center;
+}
+
+.img1 {
+    width: 750px;
+    height: 29px;
+    display: flex;
+    justify-content: initial;
+    align-items: ce;
+    padding: 0px 26%;
+    z-index: 0;
+}

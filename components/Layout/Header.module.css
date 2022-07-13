@@ -1,0 +1,80 @@
+.header {
+  width: 100%;
+  height: 15rem;
+  font: initial;
+  font-size: xxx-large;
+  background: #777;
+  background-color: #777;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+  border-bottom: 0.1rem solid white;
+}
+
+.header1 {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: inherit;
+  z-index: 10;
+  cursor: pointer;
+  font: initial;
+  border: none;
+  background-color: #000000;
+  color: white;
+
+  display: flex;
+  border-bottom: 0.1rem solid white;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.cartheader {
+  box-sizing: border-box;
+  margin: 0;
+  display: flex;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: 200;
+  justify-content: center;
+  list-style-type: none;
+  border-bottom: 0.1rem solid white;
+  position: fixed;
+  top: 0%;
+  background: black;
+  width: 100%;
+  z-index: 1;
+}
+
+.cartholder {
+  border: 2px solid #56ccf2;
+  border-radius: 7px;
+  padding: 2px px 10px;
+  position: absolute;
+  right: 2%;
+}
+
+.main-image {
+  width: 100%;
+  height: 25rem;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.button {
+  width: 100px;
+  font: initial;
+  border: none;
+  background-color: #000000;
+  color: white;
+  padding: 0.75rem 2rem;
+  display: initial;
+  justify-content: right;
+  align-items: center;
+  font-weight: bold;
+}
