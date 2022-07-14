@@ -13,6 +13,39 @@
   z-index: 10;
 }
 
+.footertitle {
+  text-align: center;
+  color: white;
+  width: 50%;
+  display: flex;
+  font-size: 50px;
+  font-weight: bold;
+  margin: 0 auto;
+}
+
+.icons {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  justify-content: space-around;
+}
+
+.iconsul {
+  list-style-type: none;
+  display: flex;
+}
+
+.iconsli {
+  padding: 10px;
+  text-align: -webkit-match-parent;
+  margin: 0px 20px;
+}
+
+.image1 {
+  width: 30px;
+}
+
 .img {
   width: 100%;
   padding: 0px 35%;
@@ -23,10 +56,10 @@
 }
 
 .img1 {
-    width: 750px;
-    height: 29px;
-    display: flex;
-    justify-content: initial;
-    align-items: ce;
-    padding: 0px 26%;
+  width: 750px;
+  height: 29px;
+  display: flex;
+  justify-content: initial;
+  align-items: ce;
+  padding: 0px 26%;
 }

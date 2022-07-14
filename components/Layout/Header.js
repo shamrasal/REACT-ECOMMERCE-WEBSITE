@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { NavLink } from 'react-router-dom'
 import classes from './Header.module.css'
 import Button from '../UI/Button/Button'
 import Cart from '../Cart/Cart';
@@ -24,8 +25,8 @@ const Header = () => {
             {CartVisible && <Cart isVisible={setcartVisible}></Cart>}
             <div className={classes.header1}>
                 <button className={classes.button}>HOME</button>
-                <button className={classes.button}>STORE</button>
-                <button className={classes.button}>ABOUT</button>
+                <NavLink to='/store' className={classes.button}>STORE</NavLink>
+                <NavLink to='/about' className={classes.button}>ABOUT</NavLink>
                 <Button onClick={CartHandler}>cart {ctx.item.length}</Button>
             </div>
             <header className={classes.header}>
