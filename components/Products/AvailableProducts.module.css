@@ -40,3 +40,9 @@
   font-size: 16px;
   font-weight: 700;
 }
+
+.button:hover,
+.button:active {
+  background: #741188;
+  border-color: #741188;
+}
