@@ -31,6 +31,7 @@ const AvailableProducts = () => {
     const product = productsArr.map((item) => (
         <ProductItem
             key={item.id}
+            id={item.id}
             title={item.title}
             price={item.price}
             image={item.imageUrl}

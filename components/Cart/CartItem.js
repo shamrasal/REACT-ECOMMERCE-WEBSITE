@@ -7,7 +7,12 @@ const CartItem = (props) => {
 
     const quantityChangeHandler = (event) => {
         event.preventDefault()
-        const quantity = document.getElementById('amount').value
+        console.log('update')
+        // const quantity = document.getElementById('amount').value
+    }
+
+    const removeHandler = (event) => {
+        console.log('remove')
     }
     return (
         <div className={classes.cartitem1}>
@@ -28,7 +33,7 @@ const CartItem = (props) => {
                     defaultValue={1}
                     onChange={quantityChangeHandler}
                 ></input>
-                <button>REMOVE</button>
+                <button onClick={removeHandler}>REMOVE</button>
             </span>
         </div>
     )

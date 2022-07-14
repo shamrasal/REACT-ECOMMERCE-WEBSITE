@@ -16,17 +16,24 @@ const CarProvider = (props) => {
         })
     }
 
-    // const removeItemHandler = (id) => {
-
-    // }
+    const removeItemHandler = (id) => {
+        // setItems((prevItems) => {
+        //     if (items.key === id) {
+        //         return
+        //     } else {
+        //         return [...prevItems]
+        //     }
+        // })
+        items.findIndex(id)
+    }
 
 
 
     const cartContext = {
         item: items,
         addItem: addItemHandler,
-        updateItem: updateItemHandler
-        // removeItem: { removeItemHandler }
+        updateItem: updateItemHandler,
+        removeItem: removeItemHandler
     }
 
     return (
