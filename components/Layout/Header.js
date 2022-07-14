@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import classes from './Header.module.css'
 import Button from '../UI/Button/Button'
 import Cart from '../Cart/Cart';
+import CartContext from '../Store/Cart-Contex';
 
 const Header = () => {
+    const ctx = useContext(CartContext)
     const [CartVisible, setcartVisible] = useState(false);
-
     const CartHandler = (event) => {
         event.preventDefault()
         setcartVisible(true)
@@ -25,7 +26,7 @@ const Header = () => {
                 <button className={classes.button}>HOME</button>
                 <button className={classes.button}>STORE</button>
                 <button className={classes.button}>ABOUT</button>
-                <Button onClick={CartHandler}>cart</Button>
+                <Button onClick={CartHandler}>cart {ctx.item.length}</Button>
             </div>
             <header className={classes.header}>
                 <h1>The Generics</h1>

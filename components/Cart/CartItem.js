@@ -1,18 +1,33 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import CartContext from '../Store/Cart-Contex'
 import classes from './Cartitem.module.css'
 
 const CartItem = (props) => {
+    const ctx = useContext(CartContext)
+
+    const quantityChangeHandler = (event) => {
+        event.preventDefault()
+        const quantity = document.getElementById('amount').value
+    }
     return (
         <div className={classes.cartitem1}>
             <span className={classes.cartitem}>
                 <img alt={props.title} src={props.image}></img>
-                <h3>{props.title}</h3>
+                <h4>{props.title}</h4>
             </span>
             <span className={classes.price}>
                 <h3>{props.price}</h3>
             </span>
             <span className={classes.end}>
-                <input type="text" value="1"></input>
+                <input
+                    id='amount'
+                    type="number"
+                    min={1}
+                    max={5}
+                    step={1}
+                    defaultValue={1}
+                    onChange={quantityChangeHandler}
+                ></input>
                 <button>REMOVE</button>
             </span>
         </div>

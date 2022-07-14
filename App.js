@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import './App.css';
 import Footer from './components/Layout/Footer';
 import Header from './components/Layout/Header';
 import AvailableProducts from './components/Products/AvailableProducts';
-import Cart from './components/Cart/Cart';
+import CarProvider from './components/Store/Cart-Provider';
 
 function App() {
 
 
   return (
-    <div className="app">
+    <CarProvider>
       {/* <Cart></Cart> */}
       <Header />
       <AvailableProducts />
       <Footer />
-    </div>
+    </CarProvider>
   );
 }
 

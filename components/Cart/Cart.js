@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import CartContext from '../Store/Cart-Contex'
 import classes from './Cart.module.css'
 import CartItem from './CartItem'
+
 
 const cartElements = [
     {
@@ -10,7 +12,6 @@ const cartElements = [
         imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
         quantity: 2,
     },
-
     {
         id: 'cart2',
         title: 'Black and white Colors',
@@ -28,18 +29,19 @@ const cartElements = [
 ]
 
 const Cart = (props) => {
-    const cartList = cartElements.map((item) => (
+    const ctx = useContext(CartContext)
+    console.log(ctx.item, 5)
+    const cartList = ctx.item.map((item) => (
         <CartItem
-            key={item.id}
+            key={Math.random().toString()}
             title={item.title}
             price={item.price}
-            image={item.imageUrl}
-            quantity={item.quantity}
+            image={item.image}
         ></CartItem>
     ))
 
     let totalPrice = 0
-    cartElements.map((item) => {
+    ctx.item.map((item) => {
         totalPrice = totalPrice + item.price
     })
 
