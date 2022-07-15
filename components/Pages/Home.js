@@ -29,24 +29,22 @@ import classes from './Home.module.css'
 //     },
 // ]
 const Home = () => {
-    const [retry, setRetry] = useState(false)
+    let [maxNumbertry, setmaxNumbertry] = useState(5)
+    const [retry, setretry] = useState(false)
     const [dataItem, setDataItem] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [error, seterror] = useState(null)
-    const stopretryHandler = () => {
-        setRetry(false)
-    }
+
     useEffect(() => {
         async function xyz() {
             setIsLoading(true)
             seterror(null)
-            setRetry(false)
             try {
                 const res = await fetch('https://jsonplaceholder.typicode.com/users')
-                const data = await res.json()
                 if (!res.ok) {
                     throw new Error('Something went wrong ....Retrying')
                 }
+                const data = await res.json()
                 const ListItems = data.map((item) => (
                     <HomeList
                         key={item.id}
@@ -58,19 +56,24 @@ const Home = () => {
                 setDataItem(ListItems)
             } catch (err) {
                 seterror(err.message)
-                if (!retry) {
+                setmaxNumbertry(maxNumbertry--)
+                setretry(true)
+                if (maxNumbertry > 0) {
                     setTimeout(() => {
-                        setRetry(true)
+                        setmaxNumbertry(maxNumbertry--)
+                        console.log(maxNumbertry)
                     }, 5000);
                 }
             }
             setIsLoading(false)
         }
         xyz()
-    }, [retry])
+    }, [maxNumbertry])
 
-
-
+    const stopretryHandler = () => {
+        setmaxNumbertry(0)
+        console.log(maxNumbertry)
+    }
 
     // let content = <h2>Something went wrong ....Retrying</h2>
     //another way of error handling
@@ -93,7 +96,7 @@ const Home = () => {
                 {!isLoading && dataItem.length === 0 && !error && <h2>No Tours Found...</h2>}
                 {!isLoading && error && <h2>{error}</h2>}
                 {isLoading && <h2>Loading...</h2>}
-                {<button onClick={stopretryHandler}>Stop Retrying</button>}
+                {retry && <button onClick={stopretryHandler}>Stop Retrying</button>}
             </ul>
         </div>
     )

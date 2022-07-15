@@ -23,14 +23,11 @@ const Header = (props) => {
             </div>
             <header className={classes.header}>
                 <span>
-                    <h1>The Generics</h1>
-                </span>
-                {/* <span>
-                    <button className={classes.letestbutton} >Get our Latest Album</button>
+                    <h1 className={classes.h1}>The Generics</h1>
                 </span>
                 <span>
-                    <button className={classes.playbutton}>►</button>
-                </span> */}
+                    <NavLink to='/movies' className={classes.letestbutton} >Get our Latest Movies</NavLink>
+                </span>
             </header>
         </div>
     )
