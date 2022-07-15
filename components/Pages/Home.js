@@ -29,37 +29,71 @@ import classes from './Home.module.css'
 //     },
 // ]
 const Home = () => {
+    const [retry, setRetry] = useState(false)
     const [dataItem, setDataItem] = useState([])
     const [isLoading, setIsLoading] = useState(false)
-
-    useEffect(() => {
-        xyz()
-    }, [])
-
-
-    async function xyz() {
-        setIsLoading(true)
-        const res = await fetch('https://jsonplaceholder.typicode.com/users')
-        const data = await res.json()
-
-        const ListItems = data.map((item) => (
-            <HomeList
-                key={item.id}
-                date={item.address.city}
-                city={item.name}
-                place={item.address.street}
-            ></HomeList>
-        ))
-        setDataItem(ListItems)
-        setIsLoading(false)
+    const [error, seterror] = useState(null)
+    const stopretryHandler = () => {
+        setRetry(false)
     }
+    useEffect(() => {
+        async function xyz() {
+            setIsLoading(true)
+            seterror(null)
+            setRetry(false)
+            try {
+                const res = await fetch('https://jsonplaceholder.typicode.com/users')
+                const data = await res.json()
+                if (!res.ok) {
+                    throw new Error('Something went wrong ....Retrying')
+                }
+                const ListItems = data.map((item) => (
+                    <HomeList
+                        key={item.id}
+                        date={item.address.city}
+                        city={item.name}
+                        place={item.address.street}
+                    ></HomeList>
+                ))
+                setDataItem(ListItems)
+            } catch (err) {
+                seterror(err.message)
+                if (!retry) {
+                    setTimeout(() => {
+                        setRetry(true)
+                    }, 5000);
+                }
+            }
+            setIsLoading(false)
+        }
+        xyz()
+    }, [retry])
+
+
+
+
+    // let content = <h2>Something went wrong ....Retrying</h2>
+    //another way of error handling
+    // let content = <h2>No Tours Found...</h2>
+    // if (dataItem.length > 0) {
+    //     content = dataItem
+    // }
+    // if (error) {
+    //     content = <h2>{error}</h2>
+    // }
+    // if (isLoading) {
+    //     content = <h2>Loading...</h2>
+    // }
     return (
         <div className={classes.home}>
             <h2>Tours</h2>
             <ul>
+                {/* {content} */}
                 {!isLoading && dataItem.length > 0 && dataItem}
-                {!isLoading && dataItem.length === 0 && <h2>No Tours Found...</h2>}
+                {!isLoading && dataItem.length === 0 && !error && <h2>No Tours Found...</h2>}
+                {!isLoading && error && <h2>{error}</h2>}
                 {isLoading && <h2>Loading...</h2>}
+                {<button onClick={stopretryHandler}>Stop Retrying</button>}
             </ul>
         </div>
     )
