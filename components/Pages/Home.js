@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react"
 import HomeList from "./homeList"
 import classes from './Home.module.css'
 
@@ -28,19 +29,29 @@ const tourElement = [
     },
 ]
 const Home = () => {
-    const ListItems = tourElement.map((item) => (
-        <HomeList
-            key={Math.random().toString()}
-            date={item.date}
-            city={item.city}
-            place={item.place}
-        ></HomeList>
-    ))
+    const [dataItem, setDataItem] = useState()
+    useEffect(() => {
+        async function xyz() {
+            const res = await fetch('https://jsonplaceholder.typicode.com/users')
+            const data = await res.json()
+
+            const ListItems = data.map((item) => (
+                <HomeList
+                    key={item.id}
+                    date={item.address.city}
+                    city={item.name}
+                    place={item.address.street}
+                ></HomeList>
+            ))
+            setDataItem(ListItems)
+        }
+        xyz()
+    }, [])
     return (
         <div className={classes.home}>
             <h2>Tours</h2>
             <ul>
-                {ListItems}
+                {dataItem}
             </ul>
         </div>
     )
