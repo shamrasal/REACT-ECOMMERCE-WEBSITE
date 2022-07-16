@@ -1,49 +1,26 @@
-.button {
+.control {
+  margin: 1rem 0;
+}
+
+.control label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.control input,
+.control textarea {
+  display: block;
+  width: 100%;
   font: inherit;
-  cursor: pointer;
-  background: #230052;
-  border: 1px solid #230052;
-  color: white;
-  padding: 0.75rem 2rem;
-  border-radius: 20px;
+  padding: 0.2rem;
+  border-radius: 12px;
+  border: 1px solid #ccc;
 }
 
-.form {
-  display: contents;
-  padding: 10%;
-}
-
-.form span {
-  display: flex;
-  padding: 1%;
-}
-
-.div {
-  text-align: -webkit-center;
-  border: 1px solid rgb(134, 134, 134);
-  border-radius: 3px;
-  margin: inherit;
-}
-
-.form input {
-  width: 80%;
-  padding: 1%;
-  border: 1px solid grey;
-  border-radius: 5px;
-}
-
-.longtext {
-  width: 80%;
-  height: 100px;
-}
-.form label {
-  text-align: initial;
-  font-size: 17px;
-  margin: 20px;
-  color: #777;
-  width: 20%;
-}
-
-.form span {
-  justify-content: center;
+.control input:focus,
+.control textarea:focus {
+  outline: none;
+  border-color: #230052;
 }

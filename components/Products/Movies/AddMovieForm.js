@@ -1,72 +1,53 @@
-import React, { useState } from "react"
-import classes from './AddMovieForm.module.css'
-const AddMovieForm = () => {
-    const [movieTitle, setMovieTitle] = useState('')
-    const [movieDescription, setMovieDescription] = useState('')
-    const [enteredDate, setEntereddate] = useState('')
+import React, { useRef } from 'react';
 
-    const titleChangeHandler = (event) => {
-        setMovieTitle(event.target.value)
+import classes from './AddMovieForm.module.css';
+
+function AddMovieForm() {
+    const titleRef = useRef('');
+    const openingTextRef = useRef('');
+    const releaseDateRef = useRef('');
+
+    async function submitHandler(event) {
+        event.preventDefault();
+        // could add validation here...
+        const movie = {
+            title: titleRef.current.value,
+            openingText: openingTextRef.current.value,
+            releaseDate: releaseDateRef.current.value,
+        };
+        titleRef.current.value = ''
+        openingTextRef.current.value = ''
+        releaseDateRef.current.value = ''
+
+        const response = await fetch('https://react-http-e5b3c-default-rtdb.firebaseio.com/movies.json', {
+            method: 'POST',
+            body: JSON.stringify(movie),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
+        const data = await response.json()
+        console.log(data)
     }
 
-    const descriptionChangeHandler = (event) => {
-        setMovieDescription(event.target.value)
-    }
-
-    const changeDateHandler = (event) => {
-        setEntereddate(event.target.value)
-    }
-
-    const submitHandler = (event) => {
-        event.preventDefault()
-        const inputData = {
-            title: movieTitle,
-            opening_crawl: movieDescription,
-            release_date: new Date(enteredDate),
-        }
-        console.log(inputData)
-        setEntereddate('')
-        setMovieDescription('')
-        setMovieTitle('')
-    }
     return (
-        <div className={classes.div}>
-            <form className={classes.form} onSubmit={submitHandler}>
-                <span>
-                    <label>Title</label>
-                    <input
-                        id="movietitle"
-                        value={movieTitle}
-                        onChange={titleChangeHandler}
-                        type='text'></input>
-                </span>
-                <span>
-                    <label>Opening Text</label>
-                    <textarea
-                        id="moviediscription"
-                        value={movieDescription}
-                        className={classes.longtext}
-                        name="message"
-                        onChange={descriptionChangeHandler}
-                        rows="10"
-                        cols="30"
-                    ></textarea>
-                </span>
-                <span>
-                    <label>Release_date</label>
-                    <input
-                        id="moviedate"
-                        value={enteredDate}
-                        onChange={changeDateHandler}
-                        type='date'
-                    ></input>
-                </span>
-                <span>
-                    <button className={classes.button}>Submit</button>
-                </span>
-            </form>
-        </div>
-    )
+        <form onSubmit={submitHandler}>
+            <div className={classes.control}>
+                <label htmlFor='title'>Title</label>
+                <input type='text' id='title' ref={titleRef} />
+            </div>
+            <div className={classes.control}>
+                <label htmlFor='opening-text'>Opening Text</label>
+                <textarea rows='5' id='opening-text' ref={openingTextRef}></textarea>
+            </div>
+            <div className={classes.control}>
+                <label htmlFor='date'>Release Date</label>
+                <input type='text' id='date' ref={releaseDateRef} />
+            </div>
+            <button>Add Movie</button>
+        </form>
+    );
 }
 
-export default AddMovieForm
+export default AddMovieForm;

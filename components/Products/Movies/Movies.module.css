@@ -18,3 +18,11 @@
     margin: 0;
     font-size: 1rem;
   }
+  
+  .movie button {
+    color: #000000;
+    margin: 0;
+    font-size: 1rem;
+    background: #f7e702;
+    background-color: #f7e702;
+  }

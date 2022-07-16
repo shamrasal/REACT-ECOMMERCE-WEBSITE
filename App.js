@@ -16,7 +16,7 @@ function App() {
     <CarProvider>
       {/* <Cart></Cart> */}
       <Header />
-      <body>
+      <div>
         <Route path='/about'>
           <About></About>
         </Route>
@@ -29,7 +29,7 @@ function App() {
         <Route path='/movies'>
           <AvailableMovie />
         </Route>
-      </body>
+      </div>
       <Footer />
     </CarProvider>
   );
