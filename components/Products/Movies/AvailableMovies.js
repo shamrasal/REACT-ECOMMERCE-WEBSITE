@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 
 import MovieList from './MovieList';
 import classes from './AvailableMovies.module.css';
-
+import AddMovieForm from './AddMovieForm';
 const AvailableMovie = () => {
     const [movies, setMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -14,7 +14,7 @@ const AvailableMovie = () => {
         try {
             const response = await fetch('https://swapi.dev/api/films/');
             if (!response.ok) {
-                throw new Error('Something went wrong!');
+                throw new Error('Something went wrong! retring...');
             }
             const data = await response.json();
 
@@ -54,6 +54,7 @@ const AvailableMovie = () => {
     return (
         <React.Fragment>
             <section className={classes.section}>
+                <AddMovieForm />
                 <button onClick={fetchMoviesHandler} className={classes.button}>Fetch Movies</button>
             </section>
             <section>{content}</section>

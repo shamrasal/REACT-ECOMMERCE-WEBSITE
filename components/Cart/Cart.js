@@ -29,10 +29,6 @@ import CartItem from './CartItem'
 // ]
 
 const Cart = (props) => {
-    
-  
-
-
     const ctx = useContext(CartContext)
     console.log(ctx.item, 5)
     const cartList = ctx.item.map((item) => (

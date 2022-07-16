@@ -1,10 +1,7 @@
-import React, { useContext } from 'react'
-import CartContext from '../Store/Cart-Contex'
+import React from 'react'
 import classes from './Cartitem.module.css'
 
 const CartItem = (props) => {
-    const ctx = useContext(CartContext)
-
     const quantityChangeHandler = (event) => {
         event.preventDefault()
         console.log('update')
