@@ -4,8 +4,8 @@
   flex-wrap: wrap;
   justify-content: space-between;
   box-sizing: border-box;
-  margin: 0;
   padding: inherit;
+  width: 340px;
 }
 
 .productItem:hover,
@@ -57,4 +57,19 @@
 
 .button:focus {
   outline: none;
+}
+
+.img {
+  height: 296px;
+  display: flex;
+  justify-content: center;
+  padding: 5%;
+}
+
+.img1 {
+  text-align: -webkit-center;
+}
+
+.hide {
+  display: none;
 }

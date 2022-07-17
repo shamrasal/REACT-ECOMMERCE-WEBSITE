@@ -1,4 +1,5 @@
-import React, { useContext } from 'react'
+import React, { useContext} from 'react'
+import { Link } from 'react-router-dom'
 import CartContext from '../../Store/Cart-Contex'
 import classes from './productItem.module.css'
 const ProductItem = (props) => {
@@ -13,19 +14,38 @@ const ProductItem = (props) => {
         })
         console.log(ctx.item)
     }
+
+    // {  <ProductDetails
+    //     className={classes.hide}
+    //     key={props.id}
+    //     id={props.id}
+    //     title={props.title}
+    //     price={props.price}
+    //     image={props.image}
+    //     category={props.category}
+    //     description={props.description}
+    //     rating={props.rating
+    //     } />}
+
     return (
-        <li className={classes.productItem}>
-            <span className={classes.h1}>
-                <h2>{props.title}</h2>
-            </span>
-            <span>
-                <img alt="img1" src={props.image}></img>
-            </span>
-            <span className={classes.price}>
-                <h2>{props.price} RS</h2>
-                <button onClick={addCartItemHandler} className={classes.button}>ADD TO CART</button>
-            </span>
-        </li>
+        <div>
+
+            <li className={classes.productItem}>
+                <span className={classes.h1}>
+                    <h2>{props.title}</h2>
+                </span>
+                <Link to={`/Details/${props.id}`}>
+                    <span className={classes.img1}>
+                        <img alt="img1" className={classes.img} src={props.image}></img>
+                    </span>
+                </Link>
+                <span className={classes.price}>
+                    <h2>{props.price} RS</h2>
+                    <button onClick={addCartItemHandler} className={classes.button}>ADD TO CART</button>
+                </span>
+            </li >
+        </div >
+
     )
 }
 

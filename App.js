@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
 import './App.css';
 import Footer from './components/Layout/Footer';
 import Header from './components/Layout/Header';
@@ -9,30 +9,37 @@ import AvailableProducts from './components/Products/AvailableProducts';
 import AvailableMovie from './components/Products/Movies/AvailableMovies';
 import CarProvider from './components/Store/Cart-Provider';
 import ContactUs from './components/Pages/ContactUs';
+import ProductDetails from './components/Products/Music/ProductDetails';
 
 function App() {
-
-
   return (
     <CarProvider>
       {/* <Cart></Cart> */}
       <Header />
       <div>
-        <Route path='/about'>
-          <About></About>
-        </Route>
-        <Route path='/store'>
-          <AvailableProducts />
-        </Route>
-        <Route path='/home'>
-          <Home />
-        </Route>
-        <Route path='/contactus'>
-          <ContactUs />
-        </Route>
-        <Route path='/movies'>
-          <AvailableMovie />
-        </Route>
+        <switch>
+          <Route path='/about'>
+            <About></About>
+          </Route>
+          <Route path='/' exact>
+            <Redirect to={'/store'} />
+          </Route>
+          <Route path='/store'>
+            <AvailableProducts />
+          </Route>
+          <Route path='/Details/:productId' component={<ProductDetails text='hi' />}>
+            <ProductDetails />
+          </Route>
+          <Route path='/home'>
+            <Home />
+          </Route>
+          <Route path='/contactus'>
+            <ContactUs />
+          </Route>
+          <Route path='/movies'>
+            <AvailableMovie />
+          </Route>
+        </switch>
       </div>
       <Footer />
     </CarProvider>
