@@ -13,6 +13,7 @@ const MovieList = (props) => {
                     title={movie.title}
                     releaseDate={movie.releaseDate}
                     openingText={movie.openingText}
+                    isretry={props.isretry}
                 />
             ))}
         </ul>

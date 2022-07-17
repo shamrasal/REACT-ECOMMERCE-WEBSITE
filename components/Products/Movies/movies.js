@@ -1,10 +1,9 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 
 import classes from './Movies.module.css';
 
 const Movie = (props) => {
-    const [retry, setrety] = useState(false)
     console.log(props.id)
     const deleteHandler = async () => {
         try {
@@ -19,7 +18,7 @@ const Movie = (props) => {
         } catch (error) {
             console.log(error)
         }
-        setrety(true)
+        props.isretry((retry)=>!retry)
     }
     return (
         <li className={classes.movie}>

@@ -7,6 +7,8 @@ const AvailableMovie = () => {
     const [movies, setMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [retry, setretry] = useState(false);
+
 
     const fetchMoviesHandler = useCallback(async () => {
         setIsLoading(true);
@@ -45,12 +47,12 @@ const AvailableMovie = () => {
 
     useEffect(() => {
         fetchMoviesHandler();
-    }, [fetchMoviesHandler]);
+    }, [fetchMoviesHandler, retry]);
 
     let content = <p>Found no movies.</p>;
 
     if (movies.length > 0) {
-        content = <MovieList movies={movies} />;
+        content = <MovieList isretry={setretry} movies={movies} />;
     }
 
     if (error) {
@@ -64,7 +66,7 @@ const AvailableMovie = () => {
     return (
         <React.Fragment>
             <section className={classes.section}>
-                <AddMovieForm />
+                <AddMovieForm isLoadAgain={setretry} />
                 <button onClick={fetchMoviesHandler} className={classes.button}>Fetch Movies</button>
             </section>
             <section>

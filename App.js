@@ -8,6 +8,7 @@ import Home from './components/Pages/Home';
 import AvailableProducts from './components/Products/AvailableProducts';
 import AvailableMovie from './components/Products/Movies/AvailableMovies';
 import CarProvider from './components/Store/Cart-Provider';
+import ContactUs from './components/Pages/ContactUs';
 
 function App() {
 
@@ -25,6 +26,9 @@ function App() {
         </Route>
         <Route path='/home'>
           <Home />
+        </Route>
+        <Route path='/contactus'>
+          <ContactUs />
         </Route>
         <Route path='/movies'>
           <AvailableMovie />

@@ -19,6 +19,7 @@ const Header = (props) => {
                 <NavLink to='/home' className={classes.button}>HOME</NavLink>
                 <NavLink to='/store' className={classes.button}>STORE</NavLink>
                 <NavLink to='/about' className={classes.button}>ABOUT</NavLink>
+                <NavLink to='/contactus' className={classes.button}>CONTACT US</NavLink>
                 <Button onClick={CartHandler}>cart {ctx.item.length}</Button>
             </div>
             <header className={classes.header}>
