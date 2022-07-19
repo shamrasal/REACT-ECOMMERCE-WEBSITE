@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom'
 import './App.css';
 import Footer from './components/Layout/Footer';
@@ -10,8 +10,11 @@ import AvailableMovie from './components/Products/Movies/AvailableMovies';
 import CarProvider from './components/Store/Cart-Provider';
 import ContactUs from './components/Pages/ContactUs';
 import ProductDetails from './components/Products/Music/ProductDetails';
+import AuthForm from './components/LogIn/AuthForm';
+import AuthContext from './components/Store/Auth-Context';
 
 function App() {
+  const ctx = useContext(AuthContext);
   return (
     <CarProvider>
       {/* <Cart></Cart> */}
@@ -21,12 +24,15 @@ function App() {
           <Route path='/about'>
             <About></About>
           </Route>
+          <Route path='/Login'>
+            <AuthForm></AuthForm>
+          </Route>
           <Route path='/' exact>
-            <Redirect to={'/store'} />
+            <Redirect to={'/home'} />
           </Route>
-          <Route path='/store'>
+          {ctx.isLoggedIn && <Route path='/store'>
             <AvailableProducts />
-          </Route>
+          </Route>}
           <Route path='/Details/:productId' component={<ProductDetails text='hi' />}>
             <ProductDetails />
           </Route>

@@ -67,8 +67,6 @@ const ProductDetails = (props) => {
                     <span>
                         <p>Rating 3.4 (144)</p>
                     </span>
-
-
                     {zoom}
                 </span>
             </div>
