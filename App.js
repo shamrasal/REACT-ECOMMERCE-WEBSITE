@@ -30,9 +30,12 @@ function App() {
           <Route path='/' exact>
             <Redirect to={'/home'} />
           </Route>
-          {ctx.isLoggedIn && <Route path='/store'>
-            <AvailableProducts />
+          {ctx.isLoggedIn && <Route path='/Login' exact>
+            <Redirect to={'/store'} />
           </Route>}
+          <Route path='/store'>
+            <AvailableProducts />
+          </Route>
           <Route path='/Details/:productId' component={<ProductDetails text='hi' />}>
             <ProductDetails />
           </Route>
