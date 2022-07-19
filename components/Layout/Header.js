@@ -26,7 +26,7 @@ const Header = (props) => {
             {CartVisible && <Cart isVisible={setcartVisible}></Cart>}
             <div className={classes.header1}>
                 <NavLink to='/home' className={classes.button}>HOME</NavLink>
-                {authctx.isLoggedIn && <NavLink to='/store' className={classes.button}>STORE</NavLink>}
+                <NavLink to='/store' className={classes.button}>STORE</NavLink>
                 <NavLink to='/about' className={classes.button}>ABOUT</NavLink>
                 {!authctx.isLoggedIn && <NavLink to='/login' className={classes.button}>LOGIN</NavLink>}
                 {authctx.isLoggedIn && <button onClick={logoutHandler} className={classes.button}>LOGOUT</button>}

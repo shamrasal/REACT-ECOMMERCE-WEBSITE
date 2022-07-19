@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
+import { useHistory, NavLink } from 'react-router-dom'
 import ProductItem from "./Music/productItem"
 import classes from './AvailableProducts.module.css'
+import AuthContext from "../Store/Auth-Context"
+import Cart from "../Cart/Cart"
 
 // const productsArr = [
 //     {
@@ -29,10 +32,16 @@ import classes from './AvailableProducts.module.css'
 //     }
 // ]
 const AvailableProducts = () => {
+    const history = useHistory()
+    const ctx = useContext(AuthContext)
+    if (!ctx.isLoggedIn) {
+        history.replace('/login')
+    }
+
     const [dataItem, setDataItem] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [error, seterror] = useState(null)
-
+    const [cartVisible, setCartVisible] = useState(false)
     useEffect(() => {
         async function xyz() {
             setIsLoading(true)
@@ -63,6 +72,10 @@ const AvailableProducts = () => {
         }
         xyz()
     }, [])
+    const cartvisibleHandler = () => {
+        setCartVisible(true)
+    }
+    
 
     return (
         < div className={classes.product} >
@@ -73,7 +86,7 @@ const AvailableProducts = () => {
                 {!isLoading && error && <h2>{error}</h2>}
                 {isLoading && <h2>Loading...</h2>}
             </ul>
-            <button className={classes.button}>See the cart</button>
+            {/* <button onClick={cartvisibleHandler} className={classes.button}>See the cart</button> */}
         </div>
     )
 }
