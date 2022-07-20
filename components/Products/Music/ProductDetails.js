@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useState, useEffect, useContext } from 'react'
+import { useParams, useHistory } from 'react-router-dom'
+import CartContext from '../../Store/Cart-Contex'
 import classes from './ProductDetails.module.css'
 const ProductDetails = (props) => {
     const [dataItem, setDataItem] = useState([])
     const [isLoading, setIsLoading] = useState(false)
+    const ctx = useContext(CartContext)
     const [hover, setHover] = useState(false)
     const [error, seterror] = useState(null)
     const [zoom, setZoom] = useState(false)
+    const history = useHistory()
     const param = useParams()
     console.log(param.productId)
     useEffect(() => {
@@ -37,6 +40,22 @@ const ProductDetails = (props) => {
         setZoom('')
         setHover(true)
     }
+    const backHandler = (event) => {
+        event.preventDefault()
+        history.replace('/store')
+    }
+    const CartHandler = (event) => {
+        event.preventDefault()
+        console.log(dataItem)
+        ctx.addItem({
+            id: dataItem.id,
+            title: dataItem.title,
+            image: dataItem.image,
+            price: dataItem.price,
+            quantity: 1
+        })
+    }
+
     return (
         <div className={classes.main}>
             <div className={classes.main1}>
@@ -66,6 +85,10 @@ const ProductDetails = (props) => {
                     </span>
                     <span>
                         <p>Rating 3.4 (144)</p>
+                    </span>
+                    <span>
+                        <button onClick={CartHandler}>Add To Cart</button>
+                        <button onClick={backHandler}>Back To Products</button>
                     </span>
                     {zoom}
                 </span>

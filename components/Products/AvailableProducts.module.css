@@ -2,8 +2,7 @@
   max-width: 900px;
   margin: 0 auto;
   padding: 20px 30px;
-  box-sizing: border-box;
-  /*     
+  /*
     width: 125px;
     height: 29px;
     display: flex;
@@ -14,7 +13,7 @@
 }
 
 .h2 {
-  font: initial;
+  /* font: initial;
   font-family: "Metal Mania";
   font-size: xx-large;
   color: rgb(0, 0, 0);
@@ -22,7 +21,18 @@
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  padding: 0 7%;
+  padding: 0 7%; */
+
+  font-family: "Metal Mania";
+  text-align: center;
+  padding: 20px;
+  font-size: 30px;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .button {

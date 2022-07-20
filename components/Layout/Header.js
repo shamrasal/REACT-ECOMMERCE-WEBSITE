@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { NavLink, useHistory } from 'react-router-dom'
 import classes from './Header.module.css'
 import Button from '../UI/Button/Button'
@@ -8,9 +8,26 @@ import AuthContext from '../Store/Auth-Context';
 
 const Header = (props) => {
     const ctx = useContext(CartContext)
+    const [itemNo, setItemNo] = useState(0)
+    const [retry, setretry] = useState(false)
     const authctx = useContext(AuthContext)
     const histoy = useHistory()
     const [CartVisible, setcartVisible] = useState(false);
+    console.log(5)
+    useEffect(() => {
+        fetch(`https://crudcrud.com/api/fc338ceee0c243419baf36b032bf3057/cart${authctx.email}`,)
+            .then(res => {
+                if (res.ok) {
+                    res.json().then(data => {
+                        setItemNo(data.length)
+                    })
+                }  
+            }).then(err => {
+                console.log(err)
+            })
+    }, [ctx])
+    console.log(ctx.item)
+
     const CartHandler = (event) => {
         event.preventDefault()
         setcartVisible(true)
@@ -31,7 +48,7 @@ const Header = (props) => {
                 {!authctx.isLoggedIn && <NavLink to='/login' className={classes.button}>LOGIN</NavLink>}
                 {authctx.isLoggedIn && <button onClick={logoutHandler} className={classes.button}>LOGOUT</button>}
                 <NavLink to='/contactus' className={classes.button}>CONTACT US</NavLink>
-                <Button onClick={CartHandler}>cart {ctx.item.length}</Button>
+                <Button onClick={CartHandler}>cart {itemNo}</Button>
             </div>
             <header className={classes.header}>
                 <span>

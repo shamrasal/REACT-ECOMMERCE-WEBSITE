@@ -37,7 +37,7 @@ const AvailableProducts = () => {
     if (!ctx.isLoggedIn) {
         history.replace('/login')
     }
-
+    console.log(ctx.email)
     const [dataItem, setDataItem] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [error, seterror] = useState(null)
@@ -62,6 +62,7 @@ const AvailableProducts = () => {
                         category={item.category}
                         description={item.description}
                         rating={item.rating}
+                        quantity={1}
                     ></ProductItem>
                 ))
                 setDataItem(ListItems)
@@ -75,12 +76,12 @@ const AvailableProducts = () => {
     const cartvisibleHandler = () => {
         setCartVisible(true)
     }
-    
+
 
     return (
         < div className={classes.product} >
             <h2 className={classes.h2}>Music</h2>
-            <ul>
+            <ul className={classes.content}>
                 {!isLoading && dataItem.length > 0 && dataItem}
                 {!isLoading && dataItem.length === 0 && !error && <h2>No Tours Found...</h2>}
                 {!isLoading && error && <h2>{error}</h2>}

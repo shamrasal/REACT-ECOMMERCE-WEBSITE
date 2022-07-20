@@ -20,7 +20,7 @@ function App() {
       {/* <Cart></Cart> */}
       <Header />
       <div>
-        <switch>
+        <Switch>
           <Route path='/about'>
             <About></About>
           </Route>
@@ -48,7 +48,7 @@ function App() {
           <Route path='/movies'>
             <AvailableMovie />
           </Route>
-        </switch>
+        </Switch>
       </div>
       <Footer />
     </CarProvider>

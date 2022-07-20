@@ -48,10 +48,11 @@ const AuthForm = () => {
             if (res.ok) {
                 res.json().then(data => {
                     console.log(data)
-                    authCtx.logIn(data.idToken)
+                    const loginEmail = enteredEmail.replace(/[^a-zA-Z ]/g, "")
+                    authCtx.logIn(data.idToken, loginEmail)
+                    histoy.replace('/store')
                 })
-                histoy.replace('/store')
-
+                
             } else {
                 res.json().then(data => {
                     console.log(data)
@@ -64,6 +65,8 @@ const AuthForm = () => {
             }
         }).then(data => {
             console.log(data)
+            histoy.replace('/store')
+
 
 
         }).catch(err => {

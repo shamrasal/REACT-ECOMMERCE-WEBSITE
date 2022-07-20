@@ -7,10 +7,24 @@ const Footer = () => {
         <div>
             <div className={classes.footer}>
                 <h1 className={classes.footertitle}>The Generics</h1>
-                <div className={classes.img1}>
-                    <img alt='youtubeIcon' className={classes.img} src={youtubeIcon}></img>
-                    <img alt='youtubeIcon' className={classes.img} src={facebookIcon}></img>
-                    <img alt='youtubeIcon' className={classes.img} src={spotifyIcon}></img>
+                <div className={classes.icons}>
+                    <ul>
+                        <li className={classes.iconsli}>
+                            <a href="https://www.youtube.com/">
+                                <img alt='youtubeIcon' className={classes.img} src={youtubeIcon}></img>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/">
+                                <img alt='facebookIcon' className={classes.img} src={facebookIcon}></img>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://open.spotify.com/">
+                                <img alt='spotifyIcon' className={classes.img} src={spotifyIcon}></img>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import AuthContext from '../Store/Auth-Context'
 import CartContext from '../Store/Cart-Contex'
 import classes from './Cart.module.css'
 import CartItem from './CartItem'
@@ -30,24 +31,61 @@ import CartItem from './CartItem'
 // ]
 
 const Cart = (props) => {
+    const [retry, setretry] = useState(false)
+    const [cartList, setCartList] = useState()
+    let [totalPrice, settotalPrice] = useState(0)
     const ctx = useContext(CartContext)
-    console.log(ctx.item, 5)
-    const cartList = ctx.item.map((item) => (
-        <CartItem
-            key={Math.random().toString()}
-            id={item.id}
-            title={item.title}
-            price={item.price}
-            image={item.image}
-        ></CartItem>
-    ))
+    const Authctx = useContext(AuthContext)
+    useEffect(() => {
+        fetch(`https://crudcrud.com/api/fc338ceee0c243419baf36b032bf3057/cart${Authctx.email}`,)
+            .then(res => {
+                if (res.ok) {
+                    res.json().then(data => {
+                        const cartList = data.map((item) => (
+                            <CartItem
+                                // key={Math.random().toString()}
+                                id={item._id}
+                                title={item.title}
+                                price={item.price}
+                                image={item.image}
+                                quantity={item.quantity}
+                                retry={setretry}
+                            ></CartItem>
+                        ))
+                        let price=0
+                        data.map((item) => (
+                            price = price + +item.price * +item.quantity
+                        ))
+                        settotalPrice(price)
+                        setCartList(cartList)
 
-    let totalPrice = 0
-    ctx.item.map((item) => {
-        totalPrice = totalPrice + item.price
-    })
+                    })
+                }
+
+            }).then(err => {
+                console.log(err)
+            })
+    }, [retry,Authctx.email])
+
+    // const cartList = ctx.item.map((item) => (
+    //     <CartItem
+    //         // key={Math.random().toString()}
+    //         id={item.id}
+    //         title={item.title}
+    //         price={item.price}
+    //         image={item.image}
+    //         quantity={item.quantity}
+    //         // retry={setretry}
+    //     ></CartItem>
+    // ))
+
+    // let totalPrice = 0
+    // ctx.item.map((item) => {
+    //     totalPrice = totalPrice + item.price * item.quantity
+    // })
 
     const removeCartHandler = (event) => {
+
         event.preventDefault()
         props.isVisible(false)
     }
@@ -67,8 +105,8 @@ const Cart = (props) => {
                 </ul>
             </span>
             <span className={classes.carttotal}>
-                <h3 className={classes.h4}>{totalPrice} RS</h3>
-                <h2>TOTAL  </h2>
+                <h3 className={classes.h4}>{totalPrice} </h3>
+                <h2>TOTAL : RS</h2>
             </span>
             <button className={classes.btn}>PURCHASE</button>
         </div>
